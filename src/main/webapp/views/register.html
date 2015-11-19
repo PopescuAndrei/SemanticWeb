@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">Register new account</h2>
+    </div>
+    <div class="panel-body">
+        <ng-form name="form.registerForm" ng-controller="registerController">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input id="firstName" name="firstName" type="text" class="form-control" placeholder="First Name" ng-model="registerForm.user.firstName" required>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input id="lastName" name="lastName" type="text" class="form-control" placeholder="Last Name" ng-model="registerForm.user.lastName" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="mail">Email:</label>
+                        <input id="mail" name="mail" type="text" class="form-control" placeholder="Email" ng-model="registerForm.user.mail" required>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input id="username" name="username" type="text" class="form-control" placeholder="Username" ng-model="registerForm.user.username" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                    <div class="container">
+                        <a class="btn btn-primary btn-lg" role="button" ng-click="create(user)" ng-disabled="registerForm.$invalid">Save</a>
+                        <a class="btn btn-default btn-lg" role="button" ng-click="reset()">Reset</a>
+                    </div>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</div>

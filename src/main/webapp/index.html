@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap-theme.css"/>
+    </head>
+    <body>
+        <div class="container-fluid">
+        <h1>Semantic Web Project</h1>
+        <div ng-app="semApp">
+            <div ng-include="'views/users.html'" ng-controller='userController'></div>
+            <a href="login.html" class="btn btn-success" role="button">Login</a>
+            <a href="register.html" class="btn btn-success" role="button">Register</a>
+        </div>
+        </div>
+
+        <!-- App Scripts -->
+        <script type="text/javascript" src="assets/jquery/jquery.js"></script>
+        <script type="text/javascript" src="assets/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="assets/angular/angular.js"></script>
+        <script type="text/javascript" src="assets/angular-route/angular-route.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/userController.js"></script>
+    </body>
+</html>

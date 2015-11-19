@@ -1,0 +1,26 @@
+<projects>
+    <project>
+        <name>Nice project</name>
+        <description>Insert text here</description>
+        <partners>
+            <partner>
+                <name>Gigi Kent</name>
+            </partner>
+            <partner>
+                <name>Gigi Becali</name>
+            </partner>
+        </partners>
+    </project>
+    <project>
+        <name>Not so nice project</name>
+        <description>Insert text here</description>
+        <partners>
+            <partner>
+                <name>Calul din Marlboro</name>
+            </partner>
+            <colaborator>
+                <name>Razboinicul Luminii</name>
+            </colaborator>
+        </partners>
+    </project>
+</projects>

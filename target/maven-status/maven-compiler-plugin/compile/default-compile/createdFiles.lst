@@ -1,0 +1,7 @@
+ro\fils\semanticweb\service\XMLDocumentService.class
+ro\fils\semanticweb\SpringMongoConfig.class
+ro\fils\semanticweb\controller\UsersController.class
+ro\fils\semanticweb\domain\XMLDocument.class
+ro\fils\semanticweb\domain\User.class
+ro\fils\semanticweb\util\UserConverter.class
+ro\fils\semanticweb\repository\XMLDocumentRepository.class
