@@ -1,0 +1,38 @@
+<table class="table table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Budget</th>
+        <th>Duration</th>
+        <th>Partners</th>
+        <th>Domain</th>
+        <th>Objective</th>
+        <th>Stages</th>
+    </tr>
+    <tr ng-repeat="project in projects">
+        <td class="text-center">
+            {{projects.id}}
+        </td>
+        <td class="text-center">
+            {{projects.title}}
+        </td>
+        <td class="text-center">
+            {{user.budget}}
+        </td>
+        <td class="text-center">
+            {{user.duration}}
+        </td>
+        <td class="text-center">
+            {{user.partners}}
+        </td>
+         <td class="text-center">
+            {{user.domain}}
+        </td>
+        <td class="text-center">
+            {{user.objective}}
+        </td>
+        <td class="text-center">
+            {{user.stages}}
+        </td>
+    </tr>
+</table>
