@@ -99,14 +99,17 @@ public class UserConverter {
 
     public User insertUser(User user, String xml) {
         ArrayList<User> users = convertFromXmlToUsers(xml);
+        boolean found = false;
         for (User u : users) {
             if (u.getMail().equals(user.getMail())) {
-                return null;
-            } else {
-                writeUserInXml(user, xml);
+                found = true;
             }
         }
-        return user;
+        if (found == false) {
+            writeUserInXml(user, xml);
+            return user;
+        }
+        return null;
     }
 
     public void writeUserInXml(User user, String xml) {
@@ -114,6 +117,7 @@ public class UserConverter {
         DocumentBuilder builder;
         Document doc;
         try {
+            System.out.println("intra");
             builder = domFactory.newDocumentBuilder();
             doc = builder.parse(xml);
             NodeList users = doc.getElementsByTagName("users");
@@ -121,8 +125,6 @@ public class UserConverter {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(doc);
-            StreamResult console = new StreamResult(System.out);//for Console print
-            transformer.transform(source, console);
             StreamResult file = new StreamResult(new File(xml));
             transformer.transform(source, file);
         } catch (ParserConfigurationException | IOException | SAXException | TransformerException ex) {

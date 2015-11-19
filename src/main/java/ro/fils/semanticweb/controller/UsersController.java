@@ -9,15 +9,14 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
-import javax.ws.rs.Consumes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.fils.semanticweb.domain.User;
 import ro.fils.semanticweb.util.UserConverter;
@@ -50,7 +49,7 @@ public class UsersController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    User insertUser(@RequestBody User user) {
+    User insertUser(@RequestParam("user") User user) {
         System.out.println("#########USERUL LA BAIAT#######" + user);
         userConverter = new UserConverter();
         User returnUser = null;
