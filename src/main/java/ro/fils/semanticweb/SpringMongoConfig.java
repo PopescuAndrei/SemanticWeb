@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
  *
  * @author andre
  */
-//@Configuration
+@Configuration
 public class SpringMongoConfig {
 
     public @Bean
