@@ -10,13 +10,13 @@ semApp.controller('registerController', ['$scope', '$http',
         }
 
         $scope.create = function (newUser) {
-            $http({url: 'http://localhost:8080/SemanticWeb/mvc/users/', method: 'POST', data: newUser, headers: {
+            $http({url: 'http://localhost:8080/SemanticWeb/mvc/users/', method: 'POST', data: user, headers: {
                     'Content-Type': 'application/json'
                 }}).
                     success(function (data) {
                         console.log(user);
                         console.log(data);
-                        console.log(newUser);
+                        console.log(user);
                         $scope.user = data;
                     });
         }

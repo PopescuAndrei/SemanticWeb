@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.fils.semanticweb.domain;
+package ro.fils.semanticweb.domain.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,23 +12,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
  *
  * @author andre
  */
-@Document(collection = "documents")
-public class XMLDocument {
+@Document(collection = "users")
+public class UsersDocument {
     
     @Id
     private String id;
-    
-    private String file;
+
+    private String content;
     
     private String fileName;
 
-    public XMLDocument(String id, String file, String fileName) {
+    public UsersDocument(String id, String file, String fileName) {
         this.id = id;
-        this.file = file;
+        this.content = file;
         this.fileName = fileName;
     }
 
-    public XMLDocument() {
+    public UsersDocument() {
     }
    
     
@@ -41,12 +41,12 @@ public class XMLDocument {
         this.id = id;
     }
 
-    public String getFile() {
-        return file;
+    public String getContent() {
+        return content;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getFileName() {

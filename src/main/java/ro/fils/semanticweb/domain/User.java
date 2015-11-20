@@ -10,7 +10,7 @@ package ro.fils.semanticweb.domain;
  * @author andre
  */
 public class User {
-    
+
     private String id;
     private String role;
     private String username;
@@ -89,8 +89,14 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", role=" + role + ", username=" + username + ", password=" + password + ", mail=" + mail + ", firstName=" + firstName + ", lastName=" + lastName + '}';
+        return "<user><id>" + id
+                + "</id><username>" + username
+                + "</username><role>" + role
+                + "</role><mail>" + mail
+                + "</mail><password>" + password
+                + "</password><first-name>" + firstName
+                + "</first-name><last-name>" + lastName
+                + "</last-name></user>";
     }
 
-    
 }

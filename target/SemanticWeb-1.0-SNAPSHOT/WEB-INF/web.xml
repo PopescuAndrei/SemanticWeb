@@ -4,13 +4,11 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
     </context-param>
-
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
-
     <!-- Configure Spring -->
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
@@ -19,9 +17,16 @@
         </servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
+    <servlet>
+        <servlet-name>UsersServlet</servlet-name>
+        <servlet-class>ro.fils.semanticweb.controller.UsersServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/mvc/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsersServlet</servlet-name>
+        <url-pattern>/UsersServlet</url-pattern>
     </servlet-mapping>
 </web-app>

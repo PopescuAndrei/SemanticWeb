@@ -5,12 +5,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="assets/bootstrap/dist/css/bootstrap-theme.css"/>
+        <link rel="stylesheet" type="text/css" href="style/app.css"/>
     </head>
     <body>
         <div class="container-fluid">
         <h1>Semantic Web Project</h1>
         <div ng-app="semApp">
-            <div ng-include="'views/users.html'" ng-controller='userController'></div>
+            <div class="container" ng-include="'views/users.html'" ng-controller='userController'></div>
+            <hr class="separator">
+<!--            <div class="container" ng-include="'views/projects.html'" ng-controller='projectController'></div> -->
             <a href="login.html" class="btn btn-success" role="button">Login</a>
             <a href="register.html" class="btn btn-success" role="button">Register</a>
         </div>
@@ -22,6 +25,7 @@
         <script type="text/javascript" src="assets/angular/angular.js"></script>
         <script type="text/javascript" src="assets/angular-route/angular-route.js"></script>
         <script src="scripts/app.js"></script>
-        <script src="scripts/userController.js"></script>
+        <script src="scripts/controller/userController.js"></script>
+<!--        <script src="scripts/controller/projectController.js"></script>-->
     </body>
 </html>

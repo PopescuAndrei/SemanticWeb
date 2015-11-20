@@ -6,6 +6,7 @@
 package ro.fils.semanticweb.util;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import ro.fils.semanticweb.domain.Project;
 import ro.fils.semanticweb.domain.Partner;
@@ -27,15 +29,15 @@ import ro.fils.semanticweb.domain.Stage;
  */
 public class ProjectConverter {
 
-    public ArrayList<Project> readAll(String xml) {
+    public ArrayList<Project> readAllProjects(String xml) {
         ArrayList<Project> projects = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         Document document;
         try {
             builder = factory.newDocumentBuilder();
-            document = builder.parse(xml);
-            NodeList nodeList = document.getDocumentElement().getChildNodes();
+            document = builder.parse(new InputSource(new StringReader(xml)));
+            NodeList nodeList = document.getElementsByTagName("project");
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 Project project = null;
@@ -46,7 +48,6 @@ public class ProjectConverter {
                         Node cNode = childNodes.item(j);
                         if (cNode instanceof Element) {
                             String content = cNode.getLastChild().getTextContent().trim();
-                            System.out.println("CONTENT NUMBER " + i + " : " + content);
                             switch (cNode.getNodeName()) {
                                 case "id": {
                                     project.setId(content);
@@ -66,31 +67,20 @@ public class ProjectConverter {
                                 }
                                 case "partners": {
                                     ArrayList<Partner> partners = new ArrayList<>();
-                                    NodeList partnerNodes = node.getChildNodes();
+                                    NodeList partnerNodes = ((Element) cNode).getElementsByTagName("partner");
+                                    System.out.println("LUNGIMEA LA PARTNERS: " + partnerNodes.getLength());
                                     for (int k = 0; k < partnerNodes.getLength(); k++) {
+                                        System.out.println("INTRA");
                                         Node partnerNode = partnerNodes.item(k);
                                         Partner partner = null;
                                         if (partnerNode instanceof Element) {
                                             partner = new Partner();
-                                            NodeList partnerChildNodes = partnerNode.getChildNodes();
-                                            System.out.println("########" + partnerChildNodes.getLength());
-                                            for (int p = 0; p < partnerChildNodes.getLength(); p++) {
-                                                Node cPartnerNode = partnerChildNodes.item(p);
-                                                if (cPartnerNode instanceof Element) {
-                                                    String contentPartner = cPartnerNode.getLastChild().getTextContent().trim();
-                                                    System.out.println("CONTENT NUMBER " + k + " : " + contentPartner);
-                                                    switch (cPartnerNode.getNodeName()) {
-                                                        case "name": {
-                                                            partner.setName(contentPartner);
-                                                            break;
-                                                        }
-                                                        case "leader": {
-                                                            partner.setName(contentPartner);
-                                                            break;
-                                                        }
-                                                    }
-                                                }
-                                            }
+                                            //NodeList partnerChildNodes = partnerNode.getChildNodes();
+                                            System.out.println(partnerNode.getChildNodes().getLength());
+                                            partner.setName(partnerNode.getChildNodes().item(0).getTextContent().trim());
+                                            System.out.println("NAME: " + partnerNode.getChildNodes().item(0).getTextContent().trim());
+                                            partner.setLeader(Boolean.parseBoolean(partnerNode.getChildNodes().item(1).getTextContent().trim()));
+                                            System.out.println("BOOLEAN: " + partnerNode.getChildNodes().item(1).getTextContent().trim());
                                         }
                                         partners.add(partner);
                                     }
@@ -108,7 +98,7 @@ public class ProjectConverter {
 
                                 case "stages": {
                                     ArrayList<Stage> stages = new ArrayList<>();
-                                    NodeList stageNodes = node.getChildNodes();
+                                    NodeList stageNodes = cNode.getChildNodes();
                                     for (int t = 0; t < stageNodes.getLength(); t++) {
                                         Node stageNode = stageNodes.item(t);
                                         Stage stage = null;
@@ -119,7 +109,6 @@ public class ProjectConverter {
                                                 Node sPartnerNode = stageChildNodes.item(s);
                                                 if (sPartnerNode instanceof Element) {
                                                     String contentStage = sPartnerNode.getLastChild().getTextContent().trim();
-                                                    System.out.println("CONTENT NUMBER " + t + " : " + contentStage);
                                                     switch (sPartnerNode.getNodeName()) {
                                                         case "name": {
                                                             stage.setName(contentStage);

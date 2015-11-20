@@ -1,38 +1,38 @@
-<table class="table table-striped">
+<table class="table table-responsive table-hover">
     <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Budget</th>
-        <th>Duration</th>
-        <th>Partners</th>
-        <th>Domain</th>
-        <th>Objective</th>
-        <th>Stages</th>
+        <th class="text-center">Id</th>
+        <th class="text-center">Title</th>
+        <th class="text-center">Budget</th>
+        <th class="text-center">Duration</th>
+        <th class="text-center">Partners</th>
+        <th class="text-center">Domain</th>
+        <th class="text-center">Objective</th>
+        <th class="text-center">Stages</th>
     </tr>
     <tr ng-repeat="project in projects">
         <td class="text-center">
-            {{projects.id}}
+            {{project.id}}
         </td>
         <td class="text-center">
-            {{projects.title}}
+            {{project.title}}
         </td>
         <td class="text-center">
-            {{user.budget}}
+            {{project.budget}}
         </td>
         <td class="text-center">
-            {{user.duration}}
+            {{project.duration}}
         </td>
         <td class="text-center">
-            {{user.partners}}
-        </td>
-         <td class="text-center">
-            {{user.domain}}
+         <div ng-repeat="partner in project.partners" ng-class="{leaderstyle: partner.leader===true}">{{partner.name}}</div>
         </td>
         <td class="text-center">
-            {{user.objective}}
+            {{project.domain}}
         </td>
         <td class="text-center">
-            {{user.stages}}
+            {{project.objective}}
+        </td>
+        <td class="text-center">
+         <div ng-repeat="stage in project.stages">{{stage.name}}</div>
         </td>
     </tr>
 </table>

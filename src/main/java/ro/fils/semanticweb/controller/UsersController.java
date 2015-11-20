@@ -5,21 +5,18 @@
  */
 package ro.fils.semanticweb.controller;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.fils.semanticweb.domain.User;
+import ro.fils.semanticweb.domain.entity.UsersDocument;
 import ro.fils.semanticweb.util.UserConverter;
+import ro.fils.semanticweb.repository.UsersDocumentRepository;
 
 /**
  *
@@ -32,48 +29,22 @@ public class UsersController {
     private UserConverter userConverter;
 
     @Autowired
-    private ServletContext context;
-
+    UsersDocumentRepository usersDocumentRepository;
+    
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ArrayList<User> getAllUsers() {
         userConverter = new UserConverter();
-        try {
-            testInsert();
-            return userConverter.convertFromXmlToUsers(context.getResource("/WEB-INF/users.xml").toString());
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return userConverter.readAllUsers(usersDocumentRepository.findOne("564f441aecece47bba5ff132").getContent());
+
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    User insertUser(@RequestParam("user") User user) {
-        System.out.println("#########USERUL LA BAIAT#######" + user);
+    User insertUser(@RequestBody User user) {
         userConverter = new UserConverter();
-        User returnUser = null;
-        try {
-            returnUser = userConverter.insertUser(user, context.getResource("/WEB-INF/users.xml").toString());
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return returnUser;
-    }
-
-    public void testInsert() {
-        User user = new User();
-        user.setId("32434");
-        user.setLastName("last name");
-        user.setFirstName("fdsfds");
-        user.setMail("mail");
-        user.setPassword("sdfsdf");
-        user.setRole("director");
-        user.setUsername("gogu");
-        try {
-            new UserConverter().insertUser(user, context.getResource("/WEB-INF/users.xml").toString());
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(UsersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String content = usersDocumentRepository.findOne("564f441aecece47bba5ff132").getContent();
+        usersDocumentRepository.save(new UsersDocument("564f441aecece47bba5ff132",userConverter.insertUser(user, content),"users"));
+        return user;
     }
 }

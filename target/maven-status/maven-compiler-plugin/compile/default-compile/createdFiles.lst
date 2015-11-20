@@ -1,0 +1,11 @@
+ro\fils\semanticweb\controller\UsersController.class
+ro\fils\semanticweb\domain\Project.class
+ro\fils\semanticweb\repository\UsersDocumentRepository.class
+ro\fils\semanticweb\repository\ProjectsDocumentRepository.class
+ro\fils\semanticweb\util\UserConverter.class
+ro\fils\semanticweb\controller\ProjectsController.class
+ro\fils\semanticweb\SpringMongoConfig.class
+ro\fils\semanticweb\util\ProjectConverter.class
+ro\fils\semanticweb\domain\Stage.class
+ro\fils\semanticweb\domain\User.class
+ro\fils\semanticweb\domain\Partner.class

@@ -6,13 +6,12 @@
 package ro.fils.semanticweb.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import ro.fils.semanticweb.domain.XMLDocument;
+import ro.fils.semanticweb.domain.entity.UsersDocument;
 
 /**
  *
  * @author andre
  */
-public interface XMLDocumentRepository extends MongoRepository<XMLDocument,String>{
-    public XMLDocument findByName(String name);
+public interface UsersDocumentRepository extends MongoRepository<UsersDocument,String>{
 }
 

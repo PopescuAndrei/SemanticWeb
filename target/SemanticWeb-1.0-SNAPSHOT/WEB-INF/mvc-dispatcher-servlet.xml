@@ -9,7 +9,15 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
-    <context:component-scan base-package="ro.fils.semanticweb.controller" />
+    <context:component-scan base-package="ro.fils.semanticweb" />
     <mvc:annotation-driven />
 
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongo" ref="mongo" />
+        <constructor-arg name="databaseName" value="Projects3" />
+    </bean>
+    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+        <property name="host" value="localhost"/>
+    </bean>
+  
 </beans>
